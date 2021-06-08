@@ -10,19 +10,25 @@ Diego Tapia root.chile@gmail.com - diego.tapia.r@mail.pucv.cl
 ## Publicaciones
 
 
+## Uso
+
 #### Build image
+
 ```
-docker build --tag mh-results . 
-``
+docker build --tag mh-results .
+```
 
 
 #### PostgresSQL Local
 
 ```
 docker-compose -p "mh-results" -f db/docker-compose.yml up -d
-```
-
-##### Import SQL
 ```
+
+#### Import SQL
+
+```
+docker cp db/backups/bd_exp.sql mh-results-db:/
+
 psql -h localhost -U db_user -W -d db_name -f /bd_exp.sql
 ```
