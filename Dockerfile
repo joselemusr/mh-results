@@ -9,4 +9,4 @@ RUN /opt/venv/bin/pip install -r requirements.txt
 
 COPY . .
 
-CMD [ "/opt/venv/bin/python3", "./main.py" ]
+CMD [ "/opt/venv/bin/python3", "./src/utils/db_append_plaintext.py" ]

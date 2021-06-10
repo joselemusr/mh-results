@@ -22,7 +22,7 @@ docker build --tag mh-results .
 #### PostgresSQL Local
 
 ```
-docker-compose -p "mh-results" -f db/docker-compose.yml up -d
+docker-compose -p "mh-results" -f docker-compose.yml up -d --build
 ```
 
 #### Import SQL
@@ -30,5 +30,19 @@ docker-compose -p "mh-results" -f db/docker-compose.yml up -d
 ```
 docker cp db/backups/bd_exp.sql mh-results-db:/
 
-psql -h localhost -U db_user -W -d db_name -f /bd_exp.sql
+psql -h localhost -U db_user -W -d db_name -f /bd_exp2.sql
+```
+
+#### Export SQL Cloud a Local
+```
+pg_dump -U db_user -d db_name -W -f bd_exp.sql
+```
+
+### PostgreSQL Copy
+
+```
+COPY mh_ejecucion FROM '/mh_ejecucion.txt' DELIMITER '|' CSV;
+COPY mh_ejecucion_resultado FROM '/mh_ejecucion_resultado.txt' DELIMITER '|' CSV;
+COPY mh_ejecucion_iteracion FROM '/mh_ejecucion_iteracion.txt' DELIMITER '|' CSV;
+
 ```
