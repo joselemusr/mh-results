@@ -1,37 +1,30 @@
-import src.utils.db
-from src.utils.dicts import options_action, options_server
+import os
+from src.utils.db import engine
+from src.utils.dicts import repairs_, instances_
+from src.classes.Plots import Plots
 
 if __name__ == '__main__':
-    """
-    Simple menu    
-    """
-
-    print("="*(30))
-    print('OPCIONES')
-    print("="*(30))
-
-    for option,key in options_action.items():
-        print(f'[{key}] {option}')
-    print("="*(30))
+   
+    plots = ['DiverisityPlot']
+    experiments = ['WOA_SCP_SAR_C']
+    path_reports = os.environ['PATH_REPORTS']
     
-    menu_action = True
-    while menu_action:
-        read_option_plot = input('Selecciona opcion [#]:')
+    for exp in experiments:
+    
+        experiment = exp.split('_')
+        metaheuristic = '_'.join(experiment[0:3])
         
-        if read_option_plot in list(options_action.values()):
-            menu_action = False
+        # Limpiamos nombre
+        repair = repairs_[experiment[3]]
+        path_reports += metaheuristic
+        
+        try:
+            os.makedirs(str(path_reports))
+        except OSError:
+            print("Directory exists %s " % path_reports)
             
-    print("="*(30))
-    print('SERVIDOR')
-    print("="*(30))
-
-    for option,key in options_server.items():
-        print(f'[{key}] {option}')
-    print("="*(30))
-    
-    menu_server = True
-    while menu_server:
-        read_option_server = input('Selecciona opcion [#]:')
+        plot = Plots(engine)
         
-        if read_option_server in list(options_action.values()):
-            menu_server = False
+        for instance in instances_(): 
+            plot.diversityPlots(instance,metaheuristic)
+            break

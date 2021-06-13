@@ -92,7 +92,7 @@ def db_to_plaintext(engine, sep, prefix_key, keys_idx, path_append_txt, tabla,he
             for idx in keys_idx:
                 row[idx] = prefix_key+'-'+str(row[idx])
                 
-            row_str = ['NULL' if c == 'None' else str(c) for c in row]
+            row_str = ['NULL' if str(c) == 'None' else str(c) for c in row]
             file_object.write(sep.join(row_str)+"\n")
             
             if n%1000==0:

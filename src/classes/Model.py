@@ -50,7 +50,7 @@ class EjecucionResultado(Base):
 class EjecucionIteracion(Base):
     
     __tablename__ = 'mh_ejecucion_iteracion'
-    id = Column(Integer(), primary_key=True)
+    id = Column(String(), primary_key=True)
     id_ejecucion = Column(String()) # ,ForeignKey('mh_ejecucion.id_ejecucion')
     numero_iteracion = Column(Integer())
     fitness_mejor = Column(Float())

@@ -1,7 +1,8 @@
 from utils.db import engine, db_to_plaintext
+from datetime import datetime
 
-prefix_key = 'server1-gcp'
-
+#timestamp de prefijo
+prefix_key = str(round(datetime.timestamp(datetime.now())))
 
 header = ['id',
         'nombre_algoritmo',
@@ -36,7 +37,7 @@ print(db_to_plaintext(engine=engine,
                           tabla = 'resultado_ejecucion',
                           path_append_txt='./db/plaintext_db/mh_ejecucion_resultado.txt'))
 
-print('Todo ok -  tabla 2')
+# print('Todo ok -  tabla 2')
 
 header = ['id',
 'id_ejecucion',
@@ -53,7 +54,7 @@ print(db_to_plaintext(engine=engine,
                           sep='|',
                           header=[],
                           prefix_key=prefix_key,
-                          keys_idx = [1],
+                          keys_idx = [0,1],
                           tabla='datos_iteracion',
                           path_append_txt='./db/plaintext_db/mh_ejecucion_iteracion.txt'
                           ))

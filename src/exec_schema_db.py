@@ -20,7 +20,6 @@ if __name__ == '__main__':
     
     """
     drop_everything(engine)
-    exit()
     try:
         
         Base.metadata.create_all(engine, checkfirst=True)
