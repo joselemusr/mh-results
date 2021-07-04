@@ -25,6 +25,13 @@ docker build --tag mh-results .
 docker-compose -p "mh-results" -f docker-compose.yml up -d --build
 ```
 
+PD: If this line is not executed, you must run
+```
+sudo ss -lptn 'sport = :5432'
+sudo kill <pid>
+```
+
+
 #### Import SQL
 
 ```
